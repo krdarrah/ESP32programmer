@@ -7,6 +7,7 @@
 */
 
 bool startFlashing() {
+  delay(1000);
   digitalWrite(En3VPin, HIGH);
   ESPFlasherInit(true, &Serial);//sets up Serial communication to wifi module, with debug messages, to Print Class of your choice
   if (ESPFlasherConnect()) {       //connects to wifi module

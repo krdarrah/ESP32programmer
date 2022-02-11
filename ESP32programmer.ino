@@ -12,6 +12,8 @@ const char bootloaderKey[] = "bootloader";
 const char partitionsKey[] = "partitions";
 const char firmwareKey[] = ".ino.bin";//when you flash over USB, it looks like this
 const char firmwareSecondKey[] = "esp32.bin";//when you export compiled binary, this is the file it generates
+
+
 const char hiddenFileKey[] = "/._";//on mac, we may find duplicates that start with this, so we filter out
 
 //these title names will be stored here
@@ -33,6 +35,7 @@ void setup() {
   initSDcard();
   pinMode(startProgramming_pin, INPUT_PULLUP);
   pinMode(En3VPin, OUTPUT);
+  digitalWrite(En3VPin, HIGH);
   redLED(false);
 }
 
@@ -52,5 +55,7 @@ void loop() {
       }
     }
     digitalWrite(En3VPin, LOW);
+    delay(1000);
+    digitalWrite(En3VPin, HIGH);
   }
 }
