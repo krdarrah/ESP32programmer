@@ -59,6 +59,18 @@ void getFileNames() {
       }
     }
 
+    char *pointerToSPIFFSKey = strstr(entry.name(), SPIFFSKey);//go find keyword
+    if (pointerToSPIFFSKey != NULL) {
+      char *pointerToHiddenFile = strstr(entry.name(), hiddenFileKey);
+      if (pointerToHiddenFile == NULL) {//good not hidden file
+        Serial.print("Found SPIFFS File: ");
+        strncpy(spiffsName, entry.name(), sizeof(spiffsName));
+        Serial.println(spiffsName);
+        flashSPIFFS = true;
+      }
+    }
+    
+Serial.println(entry.name());
     //    if (entry.isDirectory()) {
     //      Serial.println("/");
     //      //printDirectory(entry, numTabs + 1);

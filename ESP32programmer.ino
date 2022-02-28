@@ -12,7 +12,8 @@ const char bootloaderKey[] = "bootloader";
 const char partitionsKey[] = "partitions";
 const char firmwareKey[] = ".ino.bin";//when you flash over USB, it looks like this
 const char firmwareSecondKey[] = "esp32.bin";//when you export compiled binary, this is the file it generates
-
+const char SPIFFSKey[] = "spiffs.bin";///Users/kevindarrah/Library/Arduino15/packages/esp32/tools/esptool_py/3.0.0/esptool --chip esp32 --port /dev/cu.usbserial-DA00XJ7V  --baud 230400 read_flash 0x3D0000 0x30000 spiffs.bin
+boolean flashSPIFFS = false;//that way we only flash if present on card
 
 const char hiddenFileKey[] = "/._";//on mac, we may find duplicates that start with this, so we filter out
 
@@ -21,6 +22,8 @@ char bootName[100] = {NULL};
 char bootloaderName[100] = {NULL};
 char partitionsName[100] = {NULL};
 char firmwareName[100] = {NULL};
+char spiffsName[100] = {NULL};
+
 
 SPIClass spiSD(VSPI);
 
